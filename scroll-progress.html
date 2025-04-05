@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>스크롤 프로그레스바</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      line-height: 1.6;
+    }
+
+    #scrollProgress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 5px;
+      background-color: #ff6600;
+      z-index: 9999;
+      transition: width 0.2s ease-out;
+    }
+
+    .content {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="scrollProgress"></div>
+  <div class="content">
+    <h1>스크롤 프로그레스바 테스트</h1>
+    <p>이 영역은 테스트용 콘텐츠입니다. 아래로 스크롤 해보세요.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan felis nec massa pretium fermentum...</p>
+    <p style="height: 3000px;"></p>
+  </div>
+
+  <script>
+    window.addEventListener('scroll', function () {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scrollProgress').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>
